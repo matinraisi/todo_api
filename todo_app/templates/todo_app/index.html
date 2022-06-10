@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    todo API
+{% endblock %}
+
+
+
+
+{% block content %}
+<h1>welcome</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">send</button>
+</form>
+<hr>
+<hr>
+{% for item in query %}
+<div class="card text-bg-info mb-3" style="max-width: 18rem;">
+    <div class="card-header"><a class="link-dark" href="{% url 'TodoDetail' item.pk %}">{{item.category}}</a></div>
+    <div class="card-body">
+      <h5 class="card-title">{{item.title}}</h5>
+      <p class="card-text">{{item.created}}</p>
+    </div>
+  </div>
+{% endfor %}
+
+
+{% endblock  %}
